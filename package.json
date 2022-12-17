@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/adriandileo/backend/issues"
   },
-  "homepage": "https://github.com/adriandileo/backend#readme"
+  "homepage": "https://github.com/adriandileo/backend#readme",
+  "dependencies": {
+    "node": "^19.3.0"
+  }
 }
