@@ -16,8 +16,8 @@
   },
   "homepage": "https://github.com/adriandileo/backend#readme",
   "dependencies": {
+    "fs": "^0.0.1-security",
     "node": "^19.3.0"
   },
-  "devDependencies": {},
   "description": ""
 }

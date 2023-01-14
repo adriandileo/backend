@@ -1,3 +1,5 @@
+const fs = require(`fs`) ;
+
 class Producto{
   #productos=[]
   constructor(){
@@ -26,7 +28,6 @@ class Producto{
     }else{
     return byId }
    }
-
 }
 
 
@@ -46,12 +47,17 @@ let description2="Producto de prueba 2"
 let price2=200
 let code2 = "ww"
 
+let title3="Prueba2"
+let description3="Producto de prueba 2"
+let price3=200
+let code3 = "ww"
+
 addProducto.evento(title,description,price,code)
 addProducto.evento(title1,description1,price1,code1)
 addProducto.evento(title2,description2,price2,code2)
+addProducto.evento(title3,description3,price3,code3)
 
 console.log(
 addProducto.getProductsById(2),
-addProducto.getProducts()
-
+addProducto.getProducts(),
 )
