@@ -1,16 +1,17 @@
-const fs = require (`fs`)
-const { unlink } = require("fs/promises")
-const { get } = require("http")
+import fs from 'fs';
 
 const path = './entrega1.json'
 
 class Producto{
   #productos=[]
+
   
   constructor(){
     this.id=0
   }
-    async addProduct(title,description,price,code,stock=25){
+  
+//                              Subir Productos                                
+    async producto(title,description,price,code,stock=25){
         
         this.id++
         const products={
@@ -22,13 +23,15 @@ class Producto{
               stock
             }
         this.#productos.push(products);
+    }
+
+async addProduct(){
         try{
-        const productos = this.#productos      
-        if(productos.length===0){
+        const exist=  fs.existsSync(path)  
+        if(exist,path.length===this.#productos.length){
             
-            
-            const see = await fs.promises.readFile(path,'utf-8')
-            return see
+            const see = await fs.promises.readFile(path,JSON.stringify(this.#productos))
+             
          }
         else {
             const add = await fs.promises.writeFile(path,JSON.stringify(this.#productos))
@@ -39,11 +42,15 @@ class Producto{
             return(error)
         }
     }
+
+//                              Productos
    async getProducts(){
     const read = await fs.promises.readFile(path,'utf-8')
     const stryng = JSON.parse(read)
     return console.log(stryng)
    }
+
+//                              Un Producto
    async getProductsById(id){
     const read = await fs.promises.readFile(path,'utf-8')
     const stryng = JSON.parse(read)
@@ -54,47 +61,15 @@ class Producto{
 
         return console.log(byId)
     }}
-
-    async upDateProducts(id,parametro){
-        const read = await fs.promises.readFile(path,'utf-8')
-        const stryng = JSON.parse(read)
-        const byId= stryng.filter(byId => byId.id===id)
-
-        if(byId.length===0){
-            return 'sin ID: ${id}'
-        }else{
-
-            return console.log( byId)
-        }
-    }
-
-    async deleteById(id){
-        const read = await fs.promises.readFile(path,'utf-8')
-        const parse = JSON.parse(read)
-        const byId= JSON.stringify(parse.filter(byId => byId.id===id))
-        try{
-
-        if(byId.length===0){
-            return 'sin ID: ${id}'
-        }else{
-            const objeto =  JSON.parse(byId)
-            
-            // const borrado = await fs.promises.unlink(objeto)
-            const borrado = delete [`objeto`]
-            return  console.log(borrado)
-
-        }
-        }catch(error) {
-            return(error)
-        }
-    }
-
-
     async deleteAll(){
-
+    const exist=  fs.existsSync(path)  
+        if(exist){
     const borrar = await fs.promises.unlink(path)
     
-    return borrar
+    return borrar}
+    else{
+        return console.log("nada")
+    }
 }}
 
 
@@ -120,22 +95,20 @@ let price3=200
 let code3 = "ww"
 
 
-
-// this.#products
-//addProducto.addProduct(title,description,price,code)
-//addProducto.evento(title1,description1,price1,code1)
-//addProducto.evento(title2,description2,price2,code2)
-//addProducto.evento(title3,description3,price3,code3)
-
 // JSON
-//addProducto.addProduct(title,description,price,code)
-//addProducto.addProduct(title1,description1,price1,code1)
-//addProducto.addProduct(title2,description2,price2,code2)
-//addProducto.addProduct(title3,description3,price3,code3)
+addProducto.producto(title,description,price,code)
+addProducto.producto(title1,description1,price1,code1)
+addProducto.producto(title2,description2,price2,code2)
+addProducto.producto(title3,description3,price3,code3)
+//addProducto.addProduct()
 //addProducto.getProducts()
 //addProducto.getProductsById(2)
-addProducto.deleteById(1)
-addProducto.upDateProducts(3,price)
+//addProducto.deleteById(1)
+//addProducto.upDateProducts(3,price)
 //addProducto.getProducts()
-//addProducto.deleteAll() 
+addProducto.deleteAll() 
+
+console.log()
+export { Producto }
+
 
