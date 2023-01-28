@@ -5,16 +5,20 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 
-let productos = [
-    {
-        id : 1,
-        title:"Prueba",
-        description:"Producto de prueba",
-        price:200,
-        code : "qq"
-    }
-]
+let productos = []
+class Prodcutos{
+    constructor(title,descripsion,price,code,status=true,stock=25,category="string") {
+        
+        title
+        descripsion
+        price
+        code
+        status
+        stock
+        category
 
+    }
+}
 
 app.get('/api/Productos',(req,res) => {
     const {limit} = req.query
@@ -25,10 +29,12 @@ app.get('/api/Productos',(req,res) => {
 
 app.post('/producto',(req,res)=>{
     let producto = req.body
-    if(!producto.name||!producto.descripsion){
+    if(!producto.title||!producto.descripsion){
         return res.status(400).send({status:"error",error:"incompleto"})
     }
-    productos.push(producto);
+    // productos.push(producto);
+    productos.push(new Prodcutos(producto))
+    
     res.send({status:"success",message:"Exito"})
     console.log(req.body)
 })
