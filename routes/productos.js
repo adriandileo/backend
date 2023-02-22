@@ -1,7 +1,7 @@
 const {Router} = require('express')
 
-
 const router = Router()
+
 
 let productos=[]
 router.get('/',(req,res) => {

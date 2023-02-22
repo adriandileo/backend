@@ -1,28 +1,30 @@
 const express = require('express')
 const morgan = require('morgan')
+const Server = require('socket.io')
 const handlebars = require('express-handlebars')
+//const __dirname = require('./util')
 const productosRoutes = require('./routes/productos')
 const cartWidgetRoutes= require('./routes/cartwidget')
-const Server = require('socket.io')
+
 
 const port = 8000
 const app=express()
-//const httpServer=
-app.listen(port,() =>{
-    console.log(`Server running at port ${port}`)
-})
-
-//const socketServer= new Server (httpServer)
-
 
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended:true}))
-app.engine('handlebars',handlebars.engine())
-app.set('view',__dirname +'/view')
-app.set('view engeniere','handlebars')
-app.use(express.static(__dirname+'/public'))
 
+
+app.engine('handlebars',handlebars.engine())
+app.set('views',__dirname + '/view')
+app.set('view engine','handlebars')
+app.use(express.static(__dirname + '/public'))
+
+app.listen(port,() =>{
+    console.log(`Server running at port ${port}`)
+})
+//const httpServer=
+//const socketServer= new Server (httpServer)
 
 
 app.use('/productos',productosRoutes)
@@ -34,6 +36,6 @@ app.get('/',(req,res)=>{
         name:"asda",
         lastname: "tere"
     }
-    // res.json({message:user})
-    res.render('index.handlebars',{})
+    //res.json({message:user})
+    res.render('index',user)
 } )
