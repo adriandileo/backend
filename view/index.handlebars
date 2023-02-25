@@ -1,3 +1,15 @@
+
+
+{{#if Admin}}
 <div>
-    <h1>hola!{{name}} </h1>
+    <h1>hola!{{user.title}} </h1>
 </div>
+{{#each }}
+<div>
+    <p>Producto:</p>
+</div>
+{{else}}
+<div>
+    <h1>Jajajaja, no {{user.title}} </h1>
+</div>
+{{/if}}

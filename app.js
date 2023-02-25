@@ -33,9 +33,13 @@ app.use('/cart',cartWidgetRoutes)
 
 app.get('/',(req,res)=>{
     let  user = {
-        name:"asda",
-        lastname: "tere"
+        title:"asda",
+        lastname: "tere",
+        role:"admin"
     }
     //res.json({message:user})
-    res.render('index',user)
+    res.render('index',{
+        user,
+        Admin: user.role === "admin"
+    })
 } )
